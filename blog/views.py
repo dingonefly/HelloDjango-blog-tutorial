@@ -8,7 +8,7 @@ def index(request):
     # title= '首页'
     # welcome = 'my index'
     post_list = Post.objects.all().order_by('-created_time')
-    print(locals())
+    # print(locals())
     return render(request,'blog/index.html',locals())
 
 def detail(request,pk):
@@ -19,7 +19,7 @@ def detail(request,pk):
                                       'markdown.extensions.codehilite',
                                       'markdown.extensions.toc',
                                   ])
-    return render(request,'blog/detail.html',locals())
+    return render(request,'blog/detail.html', context={'post': post})
 
 def base(request):
     return render(request,'base.html',locals())
