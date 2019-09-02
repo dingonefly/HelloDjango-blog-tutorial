@@ -16,6 +16,7 @@ def post_comment(request, post_pk):
         # 用户提交的数据存在 request.POST 中，这是一个类字典对象。
         # 我们利用这些数据构造了 CommentForm 的实例，这样 Django 的表单就生成了。
         form = CommentForm(request.POST)
+        print(form)
 
         # 当调用 form.is_valid() 方法时，Django 自动帮我们检查表单的数据是否符合格式要求。
         if form.is_valid():

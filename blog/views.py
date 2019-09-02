@@ -36,20 +36,13 @@ def detail(request, pk):
 
     # 获取表单
     form = CommentForm()
-    print(form)
+    # print(form)
     # 获取这篇 post 下的全部评论
     comment_list = post.comments_set.all()
 
+    # 返回到detail页面，必须提供post、comment——list、form 三个参数
     return render(request, 'blog/detail.html',locals() )
 
-
-    # context = {
-    #     'post':post,
-    #     'form':form,
-    #     'comment_list':comment_list,
-    # }
-
-    # return render(request, 'blog/detail.html',context=context )
 
 def archives(request,year,month):
     post_list = Post.objects.filter(created_time__year=year,
