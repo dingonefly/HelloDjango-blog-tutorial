@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k=3n8j#j1(c&wu*by4^w_1&2&i9$$_ssa+mfd^)_jj#n59xl@$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.onefly.top','47.98.152.71',]
 
 
 # Application definition
@@ -130,3 +131,9 @@ STATICFILES_DIRS = [
 ]
 
 SHELL_PLUS = 'ipython'
+
+if __name__ == '__main__':
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+    print(STATICFILES_DIRS)

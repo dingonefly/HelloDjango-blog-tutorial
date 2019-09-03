@@ -13,7 +13,7 @@ from comments.forms import CommentForm
 def index(request):
     # title= '首页'
     # welcome = 'my index'
-    post_list = Post.objects.all().order_by('-created_time')
+    post_list = Post.objects.all()
     # print(locals())
     return render(request, 'blog/index.html', locals())
 
@@ -46,13 +46,13 @@ def detail(request, pk):
 
 def archives(request,year,month):
     post_list = Post.objects.filter(created_time__year=year,
-                                    created_time__month=month,).order_by('-created_time')
+                                    created_time__month=month,)
     return render(request, 'blog/index.html', locals())
 
 def category(request,pk):
     category_name = get_object_or_404(Category,pk=pk)
 
-    post_list = Post.objects.filter(category=category_name).order_by('-created_time')
+    post_list = Post.objects.filter(category=category_name)
 
     return render(request, 'blog/index.html', locals())
 

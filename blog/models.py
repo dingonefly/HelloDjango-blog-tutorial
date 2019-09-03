@@ -75,6 +75,8 @@ class Post(models.Model):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = verbose_name
+        # 指定文章排序方法，post_list的排序方法可以删除了
+        ordering = ['-created_time']
 
     def save(self,*args,**kargs):
         self.modified_time = timezone.now()
