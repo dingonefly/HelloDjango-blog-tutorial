@@ -126,14 +126,15 @@ STATIC_URL = '/static/'
 
 
 #  mysettings
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static')
+# ]
 
 SHELL_PLUS = 'ipython'
 
-if __name__ == '__main__':
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
-    print(STATICFILES_DIRS)
+# if __name__ == '__main__':
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, 'static')
+#     ]
+#     print(STATICFILES_DIRS)
