@@ -71,6 +71,8 @@ class Post(models.Model):
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和
     # Category 类似。
     author = models.ForeignKey(User,verbose_name='作者', on_delete=models.CASCADE)
+    # 新增 views 字段记录阅读量
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = '文章'
@@ -84,7 +86,9 @@ class Post(models.Model):
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
             ])
-
+        # 先将 Markdown 文本渲染成 HTML 文本
+        # strip_tags 去掉 HTML 文本的全部 HTML 标签
+        # 从文本摘取前 54 个字符赋给 excerpt
         self.excerpt = strip_tags(md.convert(self.body))[:54]
         super().save(*args,**kargs)
 
@@ -96,3 +100,11 @@ class Post(models.Model):
     # 记得从 django.urls 中导入 reverse 函数
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+
+    # increase_views方法首先将自身对应的views字段的值 + 1（此时数据库中的值还没变），
+    # 然后调用save方法将更改后的值保存到数据库。注意这里使用了
+    # update_fields参数来告诉Django只更新数据库中views字段的值，以提高效率。
+
+    def increase_views(self):
+        self.views +=1
+        self.save(update_fields=['views'])

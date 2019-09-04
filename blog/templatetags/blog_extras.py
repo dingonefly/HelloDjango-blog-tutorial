@@ -4,6 +4,7 @@
 # @Author  : dingyifei
 from django import template
 from ..models import Post,Category,Tag
+from django.db.models.aggregates import Count
 
 register = template.Library()
 
@@ -21,12 +22,20 @@ def show_archives(context):
 
 @register.inclusion_tag('blog/inclusions/_categories.html',takes_context=True)
 def show_categories(context):
+    # cate_num_dic = {}
+    # category_list = Category.objects.all()
+    # for cate in category_list:
+    #     cate_post_num = len(cate.post_set.all())
+    #     cate_num_dic[cate] = cate_post_num
+    # print(cate_num_dic)
+    # return cate_num_dic
     return {
-        'category_list':Category.objects.all()
+        # 'category_list':Category.objects.all()
+        'category_list':Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
     }
 
 @register.inclusion_tag('blog/inclusions/_tags.html',takes_context=True)
 def show_tags(context):
     return {
-        'tag_list':Tag.objects.all()
+        'tag_list':Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
     }
