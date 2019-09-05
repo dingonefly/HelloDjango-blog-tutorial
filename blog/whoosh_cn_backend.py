@@ -1,4 +1,5 @@
 # encoding: utf-8
+# 中文检索引擎
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 

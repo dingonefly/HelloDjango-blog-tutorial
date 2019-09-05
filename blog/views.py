@@ -289,5 +289,16 @@ def search(request):
 
 
 def base(request):
-    # base视图
-    return render(request, 'base.html', locals())
+    path = request.path
+    host = request.get_host()
+    full_path = request.get_full_path()
+    is_sec = request.is_secure()
+    ua = request.META.get('HTTP_USER_AGENT', 'unknown')
+    # values = request.META.items()
+    # html = []
+    # for k, v in values:
+    #     html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
+    # # base视图
+    print(locals())
+    context = locals()
+    return render(request, 'base1.html',context=context)
