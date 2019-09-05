@@ -14,7 +14,7 @@ from fabric.operations import sudo
 
 GIT_REPO = 'https://github.com/dingyifei213/07HelloDjango-blog-tutorial.git'
 
-env.user = 'dyf'
+env.user = 'root'
 env.password = 'xl1ytcY?'
 
 # 填写你自己的主机对应的域名
@@ -35,3 +35,17 @@ def deploy():
         """.format(source_folder))
     sudo('restart gunicorn-www.onefly.top')
     sudo('service nginx reload')
+
+if __name__ == '__main__':
+    GIT_REPO = 'https://github.com/dingyifei213/07HelloDjango-blog-tutorial.git'
+
+    env.user = 'dyf'
+    env.password = 'xl1ytcY?'
+
+    # 填写你自己的主机对应的域名
+    env.hosts = ['47.98.152.71']
+    # env.hosts = ['www.onefly.top']
+
+    # 一般情况下为 22 端口，如果非 22 端口请查看你的主机服务提供商提供的信息
+    env.port = '22'
+    deploy()
