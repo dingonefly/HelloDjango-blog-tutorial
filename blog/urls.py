@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from . import views
 from blog.feeds import AllPostsRssFeed
 
@@ -17,5 +17,6 @@ urlpatterns = [
     path('tag/<int:pk>', views.TagView.as_view(), name='tag'),
     path('base', views.base,name='base'),
     path('all/rss', AllPostsRssFeed(), name='rss'),
-    path('search', views.search, name='search'),
+    # path('search', views.search, name='search'),
+    path('search', include('haystack.urls')),
 ]

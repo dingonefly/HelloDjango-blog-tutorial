@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # myapp
     'blog.apps.BlogConfig',
     'comments.apps.CommentsConfig',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SHELL_PLUS = 'ipython'
 
+# 搜索组件haystack
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine', # 搜索引擎，自建
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'), # 索引文件位置
+    },
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10 # 分页
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor' # 实时更新索引
 # if __name__ == '__main__':
 #     STATICFILES_DIRS = [
 #         os.path.join(BASE_DIR, 'static')
