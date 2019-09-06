@@ -26,7 +26,7 @@ SECRET_KEY = 'k=3n8j#j1(c&wu*by4^w_1&2&i9$$_ssa+mfd^)_jj#n59xl@$'
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.onefly.top','47.98.152.71',]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.onefly.top','47.98.152.71','10.254.0.216','10.254.0.217']
 
 
 # Application definition
